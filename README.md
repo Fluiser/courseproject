@@ -8,4 +8,4 @@
 
 <h2>Как оно работает?</h2>
 
-![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Fluiser/courseproject/refs/heads/main/how.uml)
+![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/Fluiser/courseproject/refs/heads/main/howto.uml)
