@@ -1,0 +1,61 @@
+@startuml
+'--- C ----------------------------------------------------
+class Field {
+    #drawBackground(target)
+    #drawGrid(target)
+    +getShips()
+    +spawnShips()
+    +handleEvent(event, window) : Ship.contains(mousePos, step_x, step_y);
+}
+class Ship {
+    -rank: uint8_t
+    -pixelPos: v2f
+    -arr: array<Position>
+    +contains(mousePos, step_x, step_y)
+    +draw(target, states)
+}
+class WarField extends Field {
+    -gridXMouse, gridYMouse: int
+    -shots: list<Position>
+    +addShip(gridX, gridY)
+    +clearShips()
+    +handleEvent(event, window)
+    +isEnd() -> bool
+}
+class Connection {
+    -listener: TcpListener* _server
+    -socket: TcpSocket
+    -port: uint16_t
+    +connect(bool openServer)
+    +connect(std::string addr, uint16_t port)
+    +accept(): bool 
+    +write(msg)
+    +read() -> optional<Message>: bool
+    +get_port(): uint16_t
+}
+class StateHandler<T, CBType> {
+    -handlers: unordered_map<T,CBType>
+    +insert(key,cb)
+    +emit(key, args...)
+}
+
+
+interface TcpListener {}
+interface TcpSocket {}
+
+
+'--- CN ----------------------------------------------------
+Ship *-- Field : содержит
+
+Connection <|--|> TcpSocket : унифицирует
+Connection <|--|> TcpListener : унифицирует
+
+
+
+Event --> StateHandler::emit : вызов обработчика событий взависимости от текущего состояния
+Render --> StateHandler::emit : вызов отрисовки взависимости от текущего состояния 
+StateHandler::handlers --> WarField : управление отрисовкой и событиями (бой)
+StateHandler::handlers --> Field : управление отрисовкой и событиями
+StateHandler::handlers <--> Connection : отпрака и чтение
+
+@enduml
