@@ -27,7 +27,7 @@ class Connection {
     std::unique_ptr<sf::TcpListener> _listener;
     sf::TcpSocket _socket;
 
-    unsigned _port = 0;
+    uint16_t _port = 0;
 public:
 
     void connect(bool openServer)
@@ -82,7 +82,7 @@ public:
         return (bool)_listener;
     }
 
-    bool connect(sf::IpAddress addr, unsigned port)
+    bool connect(sf::IpAddress addr, uint16_t port)
     {
         if(_listener) {
             std::cout << "Use remote connect when server up\n";
@@ -126,5 +126,5 @@ public:
     }
 
     //only for server
-    const unsigned& get_port() {return _port;}
+    const uint16_t& get_port() {return _port;}
 };
