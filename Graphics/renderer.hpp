@@ -78,6 +78,11 @@ Button readyButton(L"Готово ", [](){
 }, v2f{300, 660});
 Button finishRoundButton(L"В меню ", []() {
     currentState = MENU;
+    _enemyField._shots.clear();
+    _mainField._shots.clear();
+
+    _enemyField.clearShips();
+    _mainField.clearShips();
 }, v2f{300, 660});
 
 void MENU_render(sf::RenderWindow& window)

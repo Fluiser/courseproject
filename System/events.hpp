@@ -49,9 +49,5 @@ void END_ROUND_event(sf::RenderWindow& window, const std::optional<sf::Event>& e
 {
     finishRoundButton.handleEvent(event, window);
 
-    _enemyField._shots.clear();
-    _mainField._shots.clear();
 
-    _enemyField.clearShips();
-    _mainField.clearShips();
 }
